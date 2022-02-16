@@ -1,13 +1,21 @@
 name: CICD
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
-  Echo:
-    # The type of runner that the job will run on
+  Build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Build step 1
+        run: echo This is a build job (steps) because it does not declare an environment
+  
+  DeployStaging:
+    runs-on: ubuntu-latest
+    environment: staging
+    
+    steps:
+      - name: Deploy step 1
+        run: echo This is a job and set of steps which are considered being a deployment to an environment, it will show on GitHub
