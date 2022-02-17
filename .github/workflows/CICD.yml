@@ -31,7 +31,7 @@ jobs:
   
   DeployStaging:
     name: Deploy to Staging
-    if: github.ref_name == 'staging'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: [Build]
     environment:
@@ -46,7 +46,7 @@ jobs:
     name: Deploy to Production
     if: github.ref_name == 'main'
     runs-on: ubuntu-latest
-    needs: [Build]
+    needs: [Build, DeployStaging]
     environment:
       name: production
       url: http://example.com/#production
