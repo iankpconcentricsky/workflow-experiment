@@ -46,7 +46,7 @@ jobs:
     name: Deploy to Production
     if: github.ref_name == 'main'
     runs-on: ubuntu-latest
-    needs: [Build, DeployStaging]
+    needs: [Build]
     environment:
       name: production
       url: http://example.com/#production
